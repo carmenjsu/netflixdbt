@@ -1,6 +1,6 @@
 {{
-    config(materialized='ephemeral')
-}}  --this create the data backend, not table nor view
+    config(materilized = 'ephemeral')
+}}
 
 WITH movies AS (
     SELECT * FROM {{ ref('dim_movies')}}
@@ -20,5 +20,6 @@ SELECT
     m.genres,
     t.tag_name,
     s.relevance_score
-FROM scores m ON m.movie_id = s.movie_id
+FROM movies m
+LEFT JOIN scores s ON m.movie_id = s.movie_id
 LEFT JOIN tags t ON t.tag_id = s.tag_id
