@@ -1,6 +1,6 @@
 {{
-    config(materialized='ephemeral')  --this create the data backend, not table nor view
-}}
+    config(materialized='ephemeral')
+}}  --this create the data backend, not table nor view
 
 WITH movies AS (
     SELECT * FROM {{ ref('dim_movies')}}
